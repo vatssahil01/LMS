@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>{{ page }}</title>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            color: #007bff;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fc;
+        }
+
+        tr:hover {
+            background-color: #e9ecef;
+        }
+
+        /* Button Styling */
+        .btn {
+            padding: 8px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            border: none;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+        /* Spacing for buttons */
+        .btn + .btn {
+            margin-left: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            table, th, td {
+                padding: 8px;
+            }
+
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    {% block start %}
+    <div class="container mt-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">S no.</th>
+                    <th scope="col">Owner Name</th>
+                    <th scope="col">Owner Number</th>
+                    <th scope="col">Aadhar Number</th>
+                    <th scope="col">DOB</th>
+                    <th scope="col">Library Name</th>
+                    <th scope="col">Seat Capacity</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for library in libraries %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ library.owner_name }}</td>
+                    <td>{{ library.mobile_number }}</td>
+                    <td>{{ library.aadhar_number }}</td>
+                    <td>{{ library.dob }}</td>
+                    <td>{{ library.library_name }}</td>
+                    <td>{{ library.seat_capacity }}</td>
+                    <td>{{ library.library_address }}</td>
+                    <td>
+                        <a href="/verify/{{ library.id }}/update/" class="btn btn-success">Update Info</a>
+                        <a href="/verify/{{ library.id }}/delete/" class="btn btn-danger m-2">Delete Library</a>
+                        <a href="/seat/" class="btn btn-warning">Go To Seats</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <title>{{ page }}</title>
+    <style>
+        /* General Layout */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            line-height: 1.6;
+        }
+
+        .container {
+            margin-top: 40px;
+        }
+
+        /* Card Styling */
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .card h2 {
+            color: #007bff;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .card hr {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Table Styling */
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .details-table th, .details-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        .details-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #007bff;
+            text-align: left;
+        }
+
+        .details-table td {
+            color: #555;
+        }
+
+        .details-table tr:nth-child(even) {
+            background-color: #f1f1f1;
+        }
+
+        .details-table tr:hover {
+            background-color: #e2e6ea;
+        }
+
+        .details-table th:first-child {
+            width: 30%;
+        }
+
+        /* Back Button Styling */
+        .btn-primary {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            border: 2px solid #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .col-8 {
+                width: 100%;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            .details-table th, .details-table td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    {% block start %}
+    <div class="container mt-5">
+        <div class="col-8 mx-auto card p-4 shadow-lg">
+            <h2 class="text-center">Student Details</h2>
+            <hr>
+
+            <!-- Display student details in a styled table -->
+            <table class="table details-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{ student.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Mobile Number</td>
+                        <td>{{ student.mobile_number }}</td>
+                    </tr>
+                    <tr>
+                        <td>Aadhar Number</td>
+                        <td>{{ student.aadhar_number }}</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>{{ student.address }}</td>
+                    </tr>
+                    <tr>
+                        <td>Library</td>
+                        <td>{{ student.library.library_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Slot Number</td>
+                        <td>{{ registration.slot_number }}</td>
+                    </tr>
+                    <tr>
+                        <td>Seat Number</td>
+                        <td>{{ registration.seat_number }}</td>
+                    </tr>
+                    <tr>
+                        <td>Start Date</td>
+                        <td>{{ registration.start_date }}</td>
+                    </tr>
+                    <tr>
+                        <td>End Date</td>
+                        <td>{{ registration.end_date }}</td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>{% if registration.status %}Active{% else %}Expired{% endif %}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- Back button -->
+            <div class="text-center">
+                <a href="{% url 'seat' %}" class="btn btn-primary">Back to Seats</a>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+</body>
+</html>
